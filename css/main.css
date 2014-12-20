@@ -15,6 +15,7 @@ html, body, #map-canvas {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
+/* All of the below pac* styles are based on Google's search bar styles */
 #pac-input {
   position: absolute;
   left: 88px;

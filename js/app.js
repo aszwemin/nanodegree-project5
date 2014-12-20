@@ -87,6 +87,7 @@ function setAllMarkers(map) {
 function filterResultsType(e) {
 	//types([e.target.textContent]);
 	var marker;
+	reset();
 	for (var idx in markers()) {
 		marker = markers()[idx];
 		if (marker.types.indexOf(e.target.textContent) == -1)
@@ -106,6 +107,7 @@ function filterResultsPlace(e) {
 	var idx = markerNames.indexOf(name);
 	var marker = markers()[idx];
 	var latLng = marker.getPosition();
+	reset();
 	map.setCenter(latLng);
   setInfowindow(marker.title, marker);
 	searchResultsArray(ko.utils.arrayFilter(initialSearchResultsArray, function(el) {
@@ -144,6 +146,7 @@ function setInfowindow(name, marker) {
   google.maps.event.addListener(infowindow,'closeclick',function(){
   	searchResultsArray(initialSearchResultsArray);
   	map.setCenter(startingPos);
+  	document.getElementById('pac-input').value = '';
 	});
 }
 
