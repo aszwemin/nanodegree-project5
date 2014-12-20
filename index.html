@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9QICF-Y2-Gp1psgaDgF5hUn_nReJObek&libraries=places">
+    </script>
+    <script type="text/javascript" src="js/knockout-3.2.0.js"></script>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body>
+    <input id="pac-input" class="controls" type="text" placeholder="Search">
+    <div id="map-canvas"></div>
+    <div id="pac-container"></div>
+    <div id="results">
+      <h2>Search results</h2>
+      <div id="results-list" data-bind="foreach: searchResultsArray()">
+        <div class="result">
+          <div class="header">
+            <img width=20 height=20 data-bind="attr: {src: icon}" />
+            <h4><a target="_blank" data-bind="text: name, attr: {href: url}"></a></h4>
+          </div>
+          <div class="body" data-bind="click: listElementClicked.bind(name)">
+            <!-- ko if: address -->
+            <p><em>Address:</em> <span data-bind="text: address"></span></p>
+            <!-- /ko -->
+            <!-- ko if: phone -->
+            <p><em>Phone:</em> <span data-bind="text: phone"></span></p>
+            <!-- /ko -->
+            <!-- ko if: !address && !phone -->
+            <p>No data available</p>
+            <!-- /ko -->
+            <!-- ko if: reviews -->
+            <p style="text-decoration: underline;">Reviews:</p>
+            <div class="reviews" data-bind="foreach: reviews">
+              <p><em data-bind="text: $data.author_name"></em></p>
+              <p data-bind="text: $data.text"></p>
+            </div>
+            <!-- /ko -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
